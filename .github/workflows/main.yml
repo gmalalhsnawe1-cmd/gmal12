@@ -29,7 +29,7 @@ jobs:
         run: rm -f package-lock.json && npm install --legacy-peer-deps
 
       - name: Initialize EAS Project
-        run: eas init --account gmalal12 --non-interactive
+        run: eas init --account gmalal12s-team --non-interactive
 
       - name: Build Android APK
         run: eas build --platform android --profile preview --non-interactive
