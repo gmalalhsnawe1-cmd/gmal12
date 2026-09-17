@@ -1,3 +1,4 @@
+
 name: Build Android APK
 
 on:
@@ -29,7 +30,7 @@ jobs:
         run: npm install
 
       - name: Initialize EAS Project
-        run: npx eas init --account gmal12 --non-interactive
+        run: eas init --account gmal12 --non-interactive
 
       - name: Build Android APK
         run: eas build --platform android --profile preview --non-interactive
