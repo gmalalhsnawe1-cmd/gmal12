@@ -2,21 +2,24 @@ name: Build Android APK
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
   build:
-    name: Build with EAS
+    name: Build APK
     runs-on: ubuntu-latest
+
     steps:
-      - name: Check out repository
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: npm
 
       - name: Setup Expo and EAS
         uses: expo/expo-github-action@v8
@@ -26,10 +29,22 @@ jobs:
           token: ${{ secrets.EXPO_TOKEN }}
 
       - name: Install dependencies
-        run: rm -f package-lock.json && npm install --legacy-peer-deps
+        run: npm install --legacy-peer-deps
 
-      - name: Initialize EAS Project
-        run: eas init --account gmalal12s-team --non-interactive
+      - name: Create eas.json
+        run: |
+          cat > eas.json <<'EOF'
+          {
+            "build": {
+              "preview": {
+                "distribution": "internal",
+                "android": {
+                  "buildType": "apk"
+                }
+              }
+            }
+          }
+          EOF
 
       - name: Build Android APK
         run: eas build --platform android --profile preview --non-interactive
