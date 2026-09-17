@@ -1,4 +1,5 @@
-name: Build Android APK
+name: Build Android nameionsldld:
+ eeldssroid
 
 on:
   push:
@@ -15,8 +16,7 @@ jobs:
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
-        with:
-          node-version: 22
+       on          node-version: 22
 
       - name: Setup Expo and EAS
         uses: expo/expo-github-action@v8
