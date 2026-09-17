@@ -30,7 +30,7 @@ jobs:
         run: npm install --legacy-peer-deps
 
       - name: Initialize EAS Project
-        run: eas init --account gmalal12s-team --non-interactive
+        run: eas init --account gmal12 --non-interactive
 
       - name: Build Android APK
         run: eas build --platform android --profile preview --non-interactive
